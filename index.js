@@ -176,41 +176,32 @@ app.post('/loggingin', async (req,res) => {
 	}
 });
 
+
+
+
+
 app.get('/members', (req, res) => {
     if (!req.session.authenticated) {
         res.redirect('/login');
     }
-    var image = Math.floor(Math.random() * 3) + 1;
 
-    res.redirect(`/members/${image}`);
+   var image = Math.floor(Math.random() * 3) + 1;
 
-});
-
-
-
-app.get('/members/:id', (req, res) => {
-    if (!req.session.authenticated) {
-        res.redirect('/login');
-    }
-
-    if (!req.params.id) {
-        var image = Math.floor(Math.random() * 3) + 1;
-
-        return res.redirect(`/members/${image}`);
-    }
+        
+   
     
     var username = req.session.username;
-    let imgnum = parseInt(req.params.id);
+    
     
     var page = `<h1> Welcome `+ username +` ! </h1>`;
 
-    if (imgnum === 1) {
+    if (image === 1) {
         page += `<br> <img src="/images/cat1.jpg" /> `;
     }
-    if (imgnum === 2) {
+    if (image === 2) {
         page += `<br> <img src="/images/cat2.jpg" /> `;
     }
-    if (imgnum === 3) {
+    if (image === 3) {
         page += `<br> <img src="/images/cat3.jpg" /> `;
     }
     page += `<br> <form action="/logout" method="POST"> 
