@@ -132,6 +132,7 @@ const schema = Joi.object(
 app.get('/login', (req,res) => {
     var html = `
     log in
+    ${error ? `<p>${error}</p>` : ""}
     <form action='/loggingin' method='post'>
     <input name='username' type='text' placeholder='username'>
     <input name='password' type='password' placeholder='password'>
@@ -149,7 +150,7 @@ app.post('/loggingin', async (req,res) => {
 	const validationResult = schema.validate(username);
 	if (validationResult.error != null) {
 	   console.log(validationResult.error);
-	   res.redirect("/login");
+	   res.redirect("/login?error=Wrong username/password mix");
 	   return;
 	}
 
@@ -171,7 +172,7 @@ app.post('/loggingin', async (req,res) => {
 	}
 	else {
 		console.log("incorrect password");
-		res.redirect("/login");
+		res.redirect("/login?error=Wrong username/password mix");
 		return;
 	}
 });
