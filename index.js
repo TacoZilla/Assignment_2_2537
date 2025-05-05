@@ -4,7 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
-const fs = require("fs");
+
 const Joi = require('joi');
 const saltRounds = 12
 
@@ -49,13 +49,29 @@ app.use(session({
 ));
 
 app.get("/", (req, res) => {
-    var placeholder = ` <form action="/createUser" method="get">
-      <button>Sign Up</button>
-    </form>
+    var placeholder;
+    if (req.session.authenticated)
+    {
+        placeholder += `<p> Hi ` + req.session.username ` </p>
+        <form action="/members" method="get">
+        <button>go to members</button>
+      </form>
+  
+      <form action="/logout" method="post">
+        <button>Logout</button>
+      </form> `
 
-    <form action="/login" method="get">
-      <button>Login</button>
-    </form> `
+    
+    }
+    else {
+        placeholder += ` <form action="/createUser" method="get">
+        <button>Sign Up</button>
+      </form>
+  
+      <form action="/login" method="get">
+        <button>Login</button>
+      </form> `}
+     
     res.send(placeholder);
 });
 
@@ -146,8 +162,11 @@ app.post('/loggingin', async (req,res) => {
 		req.session.authenticated = true;
 		req.session.username = username;
 		req.session.cookie.maxAge = expireTime;
-
-		res.redirect('/members');
+        var error = `<h1> Error: cannot make account </h1>
+         <form action="/createUser" method="get">
+        <button>go back to sign up?</button>
+      </form>`
+		res.send(error);
 		return;
 	}
 	else {
@@ -206,5 +225,5 @@ app.get("*dummy", (req,res) => {
 
 
 app.listen(port, () => {
-	console.log("Node application listening on port "+port);
+	console.log("Node application listening on port "+ port);
 }); 

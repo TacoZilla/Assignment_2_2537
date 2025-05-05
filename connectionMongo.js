@@ -8,6 +8,8 @@ const MongoClient = require("mongodb").MongoClient;
 const atlasURI = `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_host}/?retryWrites=true`;
 var database = new MongoClient(atlasURI, {
     tls: true,
-    useUnifiedTopology: true,
 });
+
+
+
 module.exports = {database};
