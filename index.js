@@ -49,7 +49,7 @@ app.use(session({
 ));
 
 app.get("/", (req, res) => {
-    var placeholder;
+    var placeholder = "";
     if (req.session.authenticated)
     {
         placeholder += `<p> Hi ` + req.session.username + ` </p>
