@@ -49,10 +49,10 @@ app.use(session({
 ));
 
 app.get("/", (req, res) => {
-    var placeholder = "";
+   
     if (req.session.authenticated)
     {
-        placeholder += `<p> Hi ` + req.session.username + ` </p>
+       var placeholder = `<p> Hi ` + req.session.username + ` </p>
         <form action="/members" method="get">
         <button>go to members</button>
       </form>
@@ -64,7 +64,7 @@ app.get("/", (req, res) => {
     
     }
     else {
-        placeholder += ` <form action="/createUser" method="get">
+        var placeholder = ` <form action="/createUser" method="get">
         <button>Sign Up</button>
       </form>
   
