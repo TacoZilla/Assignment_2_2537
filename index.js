@@ -108,7 +108,11 @@ const schema = Joi.object(
     const validationResult = schema.validate({username, email, password});
 	if (validationResult.error != null) {
 	   console.log(validationResult.error);
-	   res.redirect("/createUser");
+	   var error = `<h1> Error: cannot make account </h1>
+         <form action="/createUser" method="get">
+        <button>go back to sign up?</button>
+      </form>`
+		res.send(error);
 	   return;
    }
 
@@ -162,11 +166,7 @@ app.post('/loggingin', async (req,res) => {
 		req.session.authenticated = true;
 		req.session.username = username;
 		req.session.cookie.maxAge = expireTime;
-        var error = `<h1> Error: cannot make account </h1>
-         <form action="/createUser" method="get">
-        <button>go back to sign up?</button>
-      </form>`
-		res.send(error);
+        res.redirect('/members')
 		return;
 	}
 	else {
