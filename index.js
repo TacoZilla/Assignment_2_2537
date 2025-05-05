@@ -176,23 +176,31 @@ app.post('/loggingin', async (req,res) => {
 	}
 });
 
-
-
-
-
 app.get('/members', (req, res) => {
     if (!req.session.authenticated) {
         res.redirect('/login');
     }
+    var image = Math.floor(Math.random() * 3) + 1;
 
-    if (!req.query.id) {
+    res.redirect(`/members/${image}`);
+
+});
+
+
+
+app.get('/members/:id', (req, res) => {
+    if (!req.session.authenticated) {
+        res.redirect('/login');
+    }
+
+    if (!req.params.id) {
         var image = Math.floor(Math.random() * 3) + 1;
 
-        return res.redirect(`/members?id=${image}`);
+        return res.redirect(`/members/${image}`);
     }
     
     var username = req.session.username;
-    let imgnum = parseInt(req.query.id);
+    let imgnum = parseInt(req.params.id);
     
     var page = `<h1> Welcome `+ username +` ! </h1>`;
 
