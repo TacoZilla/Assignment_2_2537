@@ -130,6 +130,7 @@ const schema = Joi.object(
 });
 
 app.get('/login', (req,res) => {
+    var error = req.query.error;
     var html = `
     log in
     ${error ? `<p>${error}</p>` : ""}
