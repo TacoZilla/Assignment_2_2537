@@ -108,7 +108,7 @@ const schema = Joi.object(
     const validationResult = schema.validate({username, email, password});
 	if (validationResult.error != null) {
 	   console.log(validationResult.error);
-	   var error = `<h1> Error: cannot make account </h1>
+	   var error = `<h1> Error: cannot make account ${validationResult.error.details[0].message}  </h1>
          <form action="/createUser" method="get">
         <button>go back to sign up?</button>
       </form>`
