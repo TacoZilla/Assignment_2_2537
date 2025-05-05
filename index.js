@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
     var placeholder;
     if (req.session.authenticated)
     {
-        placeholder += `<p> Hi ` + req.session.username ` </p>
+        placeholder += `<p> Hi ` + req.session.username + ` </p>
         <form action="/members" method="get">
         <button>go to members</button>
       </form>
