@@ -74,7 +74,6 @@ function adminAuthorization(req, res, next) {
         res.status(403);
         res.render("errorMessage", {
             error: "Not Authorized",
-            title: "Error",
             LoggedIn: req.session.authenticated, 
             user_type: req.session.user_type
         });
@@ -187,7 +186,6 @@ app.post('/loggingin', async (req, res) => {
         req.session.cookie.maxAge = expireTime;
         req.session.user_type = result[0].user_type;
 
-        console.log(result[0].user_type)
         res.redirect('/members')
         return;
     }
@@ -219,8 +217,7 @@ app.get("/admin", adminAuthorization, sessionValidation, async (req, res) => {
     if (req.session.user_type != 'admin') {
             res.status(403);
             res.render("errorMessage", { 
-                error: "Not Authorized",
-                title: "Error", }
+                error: "Not Authorized", }
             );
             return;
         }
@@ -262,7 +259,6 @@ app.post('/logout', (req, res) => {
 app.get("*dummy", (req, res) => {
     res.status(404);
     res.render("404", {
-        title: "Error",
         LoggedIn: req.session.authenticated,
         user_type: req.session.user_type
     });
