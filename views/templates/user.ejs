@@ -1,7 +1,5 @@
 <tr>
-  <td><%= user.username %></td>
-  <td><%= user.email %></td>
-  <td><%= user.user_type %></td>
+  <td><%= user.username %>(<%= user.user_type %>)</td>
   <td>
     <% if (user.user_type === 'user') { %>
       <form action="/promote/<%= user._id %>" method="POST">
@@ -9,7 +7,7 @@
       </form>
     <% } if (user.user_type === 'admin') { %>
       <form action="/demote/<%= user._id %>" method="POST">
-        <button class="btn btn-sm btn-warning">Demote</button>
+        <button class="btn btn-sm btn-outline-success">Demote</button>
       </form>
     <% } else { %>
       <span class="text-muted"></span>
