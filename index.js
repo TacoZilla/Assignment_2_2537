@@ -98,7 +98,7 @@ app.use(session({
 
 app.get("/", (req, res) => {
 
-    res.render("Index", {
+    res.render("index", {
         LoggedIn: req.session.authenticated,
         username: req.session.username,
         user_type: req.session.user_type
