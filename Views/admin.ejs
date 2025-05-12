@@ -1,0 +1,36 @@
+<%- include('partials/header', { title: 'Admin', LoggedIn, user_type }) %>
+
+<h1>Admin Panel</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.user_type %></td>
+        <td>
+          <% if (user.user_type === 'user') { %>
+            <form action="/promote/<%= user._id %>" method="POST">
+              <button class="btn btn-sm btn-success">Promote</button>
+            </form>
+          <% } else if (user.user_type === 'admin' && user.username !== username) { %>
+            <form action="/demote/<%= user._id %>" method="POST">
+              <button class="btn btn-sm btn-warning">Demote</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('partials/footer') %>

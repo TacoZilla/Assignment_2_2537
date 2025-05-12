@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: "Page Title", LoggedIn: LoggedIn, user_type: user_type }) %>
+
+<% if (LoggedIn) { %>
+  <h1>Hello, <%= username %></h1>
+  <a href="/members" class="btn btn-primary">go to members</a>
+  <% if (user_type == "admin") {%>
+    
+    <a href="/admin" class="btn btn-warning">go to admin</a>
+ <% } %>
+  <form action="/logout" method="POST" class="mt-2">
+    <button class="btn btn-danger">Logout</button>
+  </form>
+<% } else { %>
+  <a href="/createUser" class="btn btn-success">Sign Up</a>
+  <a href="/login" class="btn btn-primary ms-2">Log In</a>
+<% } %>
+
+<%- include('partials/footer') %>

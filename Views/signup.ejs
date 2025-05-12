@@ -1,0 +1,21 @@
+<%- include('partials/header', { title: 'Sign Up', LoggedIn }) %>
+
+<h1>Create an Account</h1>
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/postUser" method="POST" class="mb-3">
+  <div class="mb-3">
+    <input name="username" class="form-control" type="text" placeholder="Username" >
+  </div>
+  <div class="mb-3">
+    <input name="email" class="form-control" type="email" placeholder="Email" >
+  </div>
+  <div class="mb-3">
+    <input name="password" class="form-control" type="password" placeholder="Password" >
+  </div>
+  <button class="btn btn-success">Sign Up</button>
+</form>
+
+<%- include('partials/footer') %>

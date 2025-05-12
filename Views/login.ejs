@@ -1,0 +1,18 @@
+<%- include('partials/header', { title: 'Login', LoggedIn }) %>
+
+<h1>Login</h1>
+<% if (error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/loggingin" method="POST">
+  <div class="mb-3">
+    <input name="username" class="form-control" type="text" placeholder="Username" required>
+  </div>
+  <div class="mb-3">
+    <input name="password" class="form-control" type="password" placeholder="Password" required>
+  </div>
+  <button class="btn btn-primary">Log In</button>
+</form>
+
+<%- include('partials/footer') %>
