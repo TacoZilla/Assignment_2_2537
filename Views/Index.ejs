@@ -1,4 +1,4 @@
-<%- include('templates/header', { title: "Home", LoggedIn: LoggedIn, user_type: user_type }) %>
+<%- include('templates/header', { LoggedIn: LoggedIn, user_type: user_type }) %>
 
 <% if (LoggedIn) { %>
   <h1>Hello, <%= username %></h1>
