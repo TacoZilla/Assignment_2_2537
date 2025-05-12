@@ -7,7 +7,7 @@
       <form action="/promote/<%= user._id %>" method="POST">
         <button class="btn btn-sm btn-success">Promote</button>
       </form>
-    <% } else if (user.user_type === 'admin') { %>
+    <% } if (user.user_type === 'admin') { %>
       <form action="/demote/<%= user._id %>" method="POST">
         <button class="btn btn-sm btn-warning">Demote</button>
       </form>
