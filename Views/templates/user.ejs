@@ -1,0 +1,18 @@
+<tr>
+  <td><%= user.username %></td>
+  <td><%= user.email %></td>
+  <td><%= user.user_type %></td>
+  <td>
+    <% if (user.user_type === 'user') { %>
+      <form action="/promote/<%= user._id %>" method="POST">
+        <button class="btn btn-sm btn-success">Promote</button>
+      </form>
+    <% } else if (user.user_type === 'admin' && user.username !== username) { %>
+      <form action="/demote/<%= user._id %>" method="POST">
+        <button class="btn btn-sm btn-warning">Demote</button>
+      </form>
+    <% } else { %>
+      <span class="text-muted"></span>
+    <% } %>
+  </td>
+</tr>
